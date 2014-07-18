@@ -1,0 +1,164 @@
+/*
+* Copyright (c) 2011 Google Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License"); you may not
+* use this file except in compliance with the License. You may obtain a copy of
+* the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+* WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+* License for the specific language governing permissions and limitations under
+* the License.
+*/
+var serverPath = '//galleryhangout.appspot.com/';
+
+/*
+ * ImgUr Image Control Functions
+ */
+var imgur_getImage = '//api.imgur.com/3/image/';
+var imgur_postImage = '//api.imgur.com/3/image';
+var imgur_viewImage = '//i.imgur.com/';
+
+function imgur_getImage(id) {
+	var url = imgur_getImage + id;
+	$.ajax({
+		url: url,
+		success: imgur_getResponse,
+		dataType: "json",
+		headers: {"Authorization" : imgur_clientId}
+	});
+}
+
+function imgur_getResponse(json) {
+	var data = $.parseJson(json);
+	if(data['success'] == true) {
+		var ext = null;
+		
+		if(data['data']['type'] == 'image/jpeg') {
+			ext = '.jpg';
+		}
+		else if(data['data']['type'] == 'image/gif') {
+			ext = '.gif';
+		}
+		else if(data['data']['type'] == 'image/png') {
+			ext = '.png';
+		}
+		else {
+			return {'success':false, 'data':'Unknown file type'}
+		}
+		
+		var url = 'http:' + imgur_viewImage + data['data']['id'] + 'm' + ext;
+		
+		var addImage = document.getElementById(data['data']['id']).addImage;
+		if(addImage != null) {
+			addImage(url);
+		}
+	}
+}
+
+/*
+ * Hangout App Functions
+ * 
+ */
+function updateState(event) {
+	if(event.removedKeys.length > 0) {
+		for(var k in event.removedKeys) {
+			removeImage(k);
+		}
+	}
+	else if(event.addKeys.length > 0) {
+		for(var k in event.event.addKeys) {
+			
+			var slot = createImageSlot(k);
+			
+			slot.addImage = function(url) {
+				
+				// Remove Child nodes
+				var children = this.childNodes;
+				for(var child in children) {
+					this.removeChild(child);
+				}
+				
+				// Add img
+				var img = document.createElement("IMG");
+				img.setAttribute("src", url);
+				
+				// Remove the addImage function
+				this.addImage = null;
+			}
+			
+		}
+	}
+}
+
+function uploadImage(data) {}
+
+//function onDeleteImage(data) {}
+
+function viewImage(data) {}
+
+function removeImage(key) {
+	var node = document.getElementById(key);
+	if(node) {
+		document.getElementById("img-list").removeChild(node);
+	}
+}
+
+function createImageSlot(key) {
+	// Create Div
+	var node = document.createElement("DIV");
+	
+	// Set div size to 160x160
+	node.style.width = "160px";
+	node.style.height = "160px";
+
+	// Set div border to solid
+	node.style = "5px solid black";
+	
+	// Set div contents center
+	node.style.textAlign = "center";
+	
+	// Set ID
+	node.setAttribute("id", key);
+	
+	// Add "Loading..." test to div, VHCentered
+	txt = Text("Loading...");
+	node.appendChild(txt);
+	
+	// Return div
+	return node;
+}
+
+
+
+// A function to be run at app initialization time which registers our callbacks
+function init() {
+  console.log('Init app.');
+  
+  // Get End of Image list (ie: Add/Drop Img zone)
+  window.imgListDropZone = document.getElementById("img-list-dropzone")
+  
+  var apiReady = function(eventObj) {
+    if (eventObj.isApiReady) {
+      console.log('API is ready');
+
+      gapi.hangout.data.onStateChanged.add(function(eventObj) {
+        updateStateUi(eventObj.state);
+      });
+
+      updateStateUi(gapi.hangout.data.getState());
+      updateParticipantsUi(gapi.hangout.getParticipants());
+
+      gapi.hangout.onApiReady.remove(apiReady);
+    }
+  };
+
+  // This application is pretty simple, but use this special api ready state
+  // event if you would like to any more complex app setup.
+  gapi.hangout.onApiReady.add(apiReady);
+}
+
+gadgets.util.registerOnLoadHandler(init);

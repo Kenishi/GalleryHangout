@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+    <ModulePrefs title="Hangout Starter">
+        <Require feature="rpc"/>
+        <Require feature="views"/>
+        <Require feature="locked-domain"/>
+    </ModulePref>
+    <Content type="html"
+        <![CDATA[
+        	<html>
+        	<head>
+        	<style type="text/css">
+        		body {
+        			background: black;
+        		}
+        	</style>
+       		<script src="http://plus.google.com/hangouts/_/api/v1/hangout.js"></script>
+       		<script src="http://layout.jquery-dev.com/lib/js/jquery.layout-latest.min.js"></script>
+       		<script>
+    			$(document).ready(function () {
+        			$('body').layout({ applyDefaultStyles: true });
+    			});
+    			
+    			// Add Drop Zone to west
+    			
+    			
+			</script>
+        	</head>
+        	<body>
+        		<div class="ui-layout-west">
+        			<div id="img-list">
+        				<div id="img-list-dropzone"></div>
+        			</div>        		
+        		</div>
+        		
+        		<div class="ui-layout-center">
+        		
+        		</div>
+        		
+        	</body>
+        ]]></Content>
+</Module>

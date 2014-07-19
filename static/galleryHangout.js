@@ -22,6 +22,11 @@ var imgur_getImage = '//api.imgur.com/3/image/';
 var imgur_postImage = '//api.imgur.com/3/image';
 var imgur_viewImage = '//i.imgur.com/';
 
+/**
+ * Retrieve image info based on an id.
+ * 
+ * @param id The id of the image to look up.
+ */
 function imgur_getImage(id) {
 	var url = imgur_getImage + id;
 	$.ajax({
@@ -32,6 +37,15 @@ function imgur_getImage(id) {
 	});
 }
 
+/**
+ * The callback for the getImage request.
+ * 
+ * This function will also fill in the respective gallery
+ * slot if the image exists.
+ * 
+ * @param json JSON returned by the getImage request
+ * @returns null
+ */
 function imgur_getResponse(json) {
 	var data = $.parseJson(json);
 	if(data['success'] == true) {
@@ -54,14 +68,22 @@ function imgur_getResponse(json) {
 		
 		var addImage = document.getElementById(data['data']['id']).addImage;
 		if(addImage != null) {
-			addImage(url);
+			addImage(url, ext);
 		}
+		else {
+			document.getElementById(data['data']['id']).fail();
+		}
+	}
+	else {d
+		document.getElementById(data['data']['id']).fail();
 	}
 }
 
-/*
- * Hangout App Functions
- * 
+/* Hangout App Functions */
+
+
+/**
+ * Callback for when App state changes
  */
 function updateState(event) {
 	if(event.removedKeys.length > 0) {
@@ -72,25 +94,56 @@ function updateState(event) {
 	else if(event.addKeys.length > 0) {
 		for(var k in event.event.addKeys) {
 			
+			/* Make sure image doesn't already exit */
+			if(document.getElementById(k) != null) continue;
+			
 			var slot = createImageSlot(k);
 			
-			slot.addImage = function(url) {
+			/* Set the AddImage call back for after
+			 * polling image info.
+			 */
+			slot.addImage = function(url,ext) {
 				
-				// Remove Child nodes
+				// Remove 'Loading' text
 				var children = this.childNodes;
 				for(var child in children) {
 					this.removeChild(child);
 				}
-				
-				// Add img
-				var img = document.createElement("IMG");
-				img.setAttribute("src", url);
-				
 				// Remove the addImage function
 				this.addImage = null;
+				
+				// Create the image and set it up
+				var img = document.createElement("IMG");
+				img.setAttribute("src", url);
+				$(img).data("ext", ext);	// Store the file extension for when clicked
+				img.onclick = onGalleryImageClick;
 			}
 			
+			slot.fail = function() {
+				this.style.borderColor = "red";
+				$().toastmessage("showErrorToast", "Error fetching image");
+				
+				// Remove the node
+				var parent = this.parentNode;
+				parent.removeChild(this);
+			}
+			
+			// Place slot in list
+			var dropnode = document.getElementById("img-list-dropzone"); 
+			document.getElementById("img-list").insertBefore(slot, dropnode);
 		}
+	}
+}
+
+/**
+ * Remove the specified image from the gallery list.
+ * 
+ * @param id An id for a slot to remove.
+ */
+function removeImage(id) {
+	var slot = document.getElementById(id)
+	if(slot != null) {
+		slot.parentNode.removeChild(slot);
 	}
 }
 
@@ -98,7 +151,20 @@ function uploadImage(data) {}
 
 //function onDeleteImage(data) {}
 
-function viewImage(data) {}
+
+/*
+ * Show the gallery image on the main pane
+ */
+function onGalleryImageClick() {
+	// Get ID
+	var id = this.parentNode.getAttribute("id");
+	var ext = $(this).data['ext'];
+	
+	// Get mainview and change it
+	var img = document.getElementById("img-main-view");
+	var url = 'http:' + imgur_viewImage + id + ext; 
+	img.setAttribute('src', url);
+}
 
 function removeImage(key) {
 	var node = document.getElementById(key);
@@ -107,31 +173,25 @@ function removeImage(key) {
 	}
 }
 
+/*
+ * Creates a blank slot in the gallery while the thumb loads 
+ */
 function createImageSlot(key) {
-	// Create Div
+
+	// Create a holder slot while image loads
 	var node = document.createElement("DIV");
-	
-	// Set div size to 160x160
 	node.style.width = "160px";
 	node.style.height = "160px";
-
-	// Set div border to solid
 	node.style = "5px solid black";
-	
-	// Set div contents center
 	node.style.textAlign = "center";
-	
-	// Set ID
 	node.setAttribute("id", key);
 	
-	// Add "Loading..." test to div, VHCentered
+	// Set filler text to notify user of loading
 	txt = Text("Loading...");
 	node.appendChild(txt);
 	
-	// Return div
 	return node;
 }
-
 
 
 // A function to be run at app initialization time which registers our callbacks

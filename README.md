@@ -32,10 +32,16 @@ No program is without problems though.
 The leading problem is that there is no easy way to share the images. It might be possible to set up the widget to load the imges into your Google Drive and then make them available automatically. I suspect there may be a number of issues with security permissions that make this difficult or impossible. So I went with the next best option.
 
 __Imgur__
+
 Imgur has a RESTful API in place that allows for easy uploading of images and viewing of images in the system. So this is why I went this route.
 
 ##What to learn?
 Every project provides something new to learn. This is my first project that makes strong use of __Javascript__ as the main part of the app. In addition its a __Google App Engine__ project so it was my first exposure to hosting a program in the cloud. In addition there are the usual 'culprits' as well: __HTML, CSS, JQuery,__ and some light use of __Ajax__ obviously, since there is __REST API__ being used.
 
+##Credits
+I'm making use of one library at the moment:
 
+[Jquery ToastMessage Plugin](http://akquinet.github.io/jquery-toastmessage-plugin/) by [akquinet](http://github.com/akquinet)
+
+---
 As always, Thanks for checking this out!

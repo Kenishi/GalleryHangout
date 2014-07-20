@@ -88,66 +88,79 @@ function imgur_getResponse(json) {
 function updateState(event) {
 	if(event.removedKeys.length > 0) {
 		for(var k in event.removedKeys) {
-			removeImage(k);
+			removeImageFromGalleryList(k);
 		}
 	}
 	else if(event.addKeys.length > 0) {
 		for(var k in event.event.addKeys) {
-			
-			/* Make sure image doesn't already exit */
-			if(document.getElementById(k) != null) continue;
-			
-			var slot = createImageSlot(k);
-			
-			/* Set the AddImage call back for after
-			 * polling image info.
-			 */
-			slot.addImage = function(url,ext) {
-				
-				// Remove 'Loading' text
-				var children = this.childNodes;
-				for(var child in children) {
-					this.removeChild(child);
-				}
-				// Remove the addImage function
-				this.addImage = null;
-				
-				// Create the image and set it up
-				var img = document.createElement("IMG");
-				img.setAttribute("src", url);
-				$(img).data("ext", ext);	// Store the file extension for when clicked
-				img.onclick = onGalleryImageClick;
-			}
-			
-			slot.fail = function() {
-				this.style.borderColor = "red";
-				$().toastmessage("showErrorToast", "Error fetching image");
-				
-				// Remove the node
-				var parent = this.parentNode;
-				parent.removeChild(this);
-			}
-			
-			// Place slot in list
-			var dropnode = document.getElementById("img-list-dropzone"); 
-			document.getElementById("img-list").insertBefore(slot, dropnode);
+			addImageToGalleryList(k);
 		}
 	}
-}
-
-/**
- * Remove the specified image from the gallery list.
- * 
- * @param id An id for a slot to remove.
- */
-function removeImage(id) {
-	var slot = document.getElementById(id)
-	if(slot != null) {
-		slot.parentNode.removeChild(slot);
+	else if(event.addKeys.length == 0 && event.removeKeys.length == 0) {
+		/* Refresh List */
+		// Add phase
+		for(var key in state) {
+			var ele = document.getElementById(key);
+			if(ele == null) {
+				addImageToGalleryList(key);
+			}
+		}
+		// Remove Images not in State
+		var node = document.getElementById("img-list").firstChild;
+		var end = document.getElementById("img-list-dropzone");
+		while(node != end) {
+			if(state[node.getAttribute("id")] == null) {
+				document.getElementById("img-list").removeChild(node);
+			}
+			node = node.nextSibling;
+		}
+		
 	}
 }
 
-function uploadImage(data) {}
+function addImageToGalleryList(k) {
+	/* Make sure image doesn't already exit */
+	if(document.getElementById(k) != null) continue;
+	
+	var slot = createImageSlot(k);
+	
+	/* Set the AddImage call back for after
+	 * polling image info.
+	 */
+	slot.addImage = function(url,ext) {
+		
+		// Remove 'Loading' text
+		var children = this.childNodes;
+		for(var child in children) {
+			this.removeChild(child);
+		}
+		// Remove the addImage function
+		this.addImage = null;
+		
+		// Create the image and set it up
+		var img = document.createElement("IMG");
+		img.setAttribute("src", url);
+		$(img).data("ext", ext);	// Store the file extension for when clicked
+		img.onclick = onGalleryImageClick;
+	}
+	
+	slot.fail = function() {
+		this.style.borderColor = "red";
+		$().toastmessage("showErrorToast", "Error fetching image");
+		
+		// Remove the node
+		var parent = this.parentNode;
+		parent.removeChild(this);
+	}
+	
+	// Place slot in list
+	var dropnode = document.getElementById("img-list-dropzone"); 
+	document.getElementById("img-list").insertBefore(slot, dropnode);
+}
+
+function uploadImage(data) {
+	
+}
 
 //function onDeleteImage(data) {}
 
@@ -166,7 +179,12 @@ function onGalleryImageClick() {
 	img.setAttribute('src', url);
 }
 
-function removeImage(key) {
+/**
+ * Remove the specified image from the gallery list.
+ * 
+ * @param key An id for a slot to remove.
+ */
+function removeImageFromGalleryList(key) {
 	var node = document.getElementById(key);
 	if(node) {
 		document.getElementById("img-list").removeChild(node);

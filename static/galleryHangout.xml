@@ -3,60 +3,85 @@
     <ModulePrefs title="Hangout Starter">
         <Require feature="rpc"/>
         <Require feature="views"/>
-        <Require feature="locked-domain"/>
-    </ModulePref>
-    <Content type="html"
+    </ModulePrefs>
+    <Content type="html">
         <![CDATA[
-        	<html>
-        	<head>
-        	<style type="text/css">
-        		body {
-        			background: black;
+        	<!DOCTYPE html>
+       		<script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
+       		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+       		<link rel="stylesheet" type="text/css" href="//galleryhangout.appspot.com/static/jquery-ui.css" />
+       		<link rel="stylesheet" type="text/css" href="//galleryhangout.appspot.com/static/layout-default-latest.css" />
+			<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+       		<script src="//galleryhangout.appspot.com/static/jquery.layout-latest.min.js"></script>
+       		<script src="//galleryhangout.appspot.com/static/toastmessage/jquery.toastmessage.js"></script>
+       		<script src="//galleryhangout.appspot.com/static/imgur_client.js"></script>
+			<style type="text/css">
+				.ui-layout-pane {
+        			background: black !important;
+        			color: white !important;
+        		}
+				
+				.ui-layout-center {
+					text-align: center;
+				}
+				
+        		.ui-layout-center img {
+					position: relative;
+					display: inline-block;
+					vertical-align: middle;
+					font: 16px/1 Arial san-serif;
+        			max-width: 100%;
+        			max-height: 100%;
         		}
         		
-        		#ui-layout-center img {
-        			width: 100%;
+        		#container {
+        			height: 100%;
+        			text-align: inherit;
+        			font: 0/0 a;
         		}
+        		
+        		#container:before {
+        			content: ' ';
+        			display: inline-block;
+        			vertical-align: middle;
+        			height: 100%;
+        		}
+        		
+        		#img-list-dropzone {
+        			width: 160px;
+        			height: 160px;
+        			border-style: dashed;
+        			border-color: white;
+        			margin: 5px;
+        			padding: 5px;
+        			color: white;    
+        			text-align: center;    		
+        		}
+        		
+        		#dropzone-text {
+        			position: relative;
+        			top: 40%;
+        			transform: translateY(-50%);
+        		}
+        		
         	</style>
+       		<div class="ui-layout-west">
+       			<div id="img-list">
+       				<div class="filedrop" id="img-list-dropzone">
+       					<span id="dropzone-text">Drop Images Here or Click Me</span>
+       				</div>
+       			</div>        		
+       		</div>
        		
-       		<script src="http://plus.google.com/hangouts/_/api/v1/hangout.js"></script>
-       		<link type="text/css" href="css/jquery.toastmessage.css" rel="stylesheet" />
-       		<script src="http://layout.jquery-dev.com/lib/js/jquery.layout-latest.min.js"></script>
-       		<script src="toastmessage/jquery.toastmessage.js"></script>
-       		<script src="imgur_client.js"></script>
-       		<script src="galleryHangout.js"></script>
-       		<script>
-    			$(document).ready(function () {
-        			$('body').layout({ applyDefaultStyles: true });
-    			});
-    			
-    			// Add Drop Zone to west
-    			
-    			
-			</script>
-        	</head>
-        	
-        	<body>
-        		<div class="ui-layout-west">
-        			<div id="img-list">
-        				<div id="img-list-dropzone"></div>
-        			</div>        		
-        		</div>
-        		
-        		<div class="ui-layout-center">
-        			<img id="img-main-view" src=""
-        				style="visibility:hidden"
-        				onload=function() {
-        					if(this.height > this.width) {
-        						this.height = '100%';
-        						this.width = 'auto';
-        					}
-        					this.style.visibility = 'visible';
-        				}
-        			/>
-        		</div>
-        		
-        	</body>
-        	</html>
+       		<div class="ui-layout-center filedrop">
+       			<div id="container">
+	       			<img id="img-main-view" src="" style="visibility:hidden"
+	       				onload=function() {
+	       					this.style.visibility = 'visible';
+	       				}
+	       			/>
+	       		</div>
+       		</div>
+     		<script src="//galleryhangout.appspot.com/static/galleryHangout.js"></script>
         ]]></Content>
 </Module>

@@ -1,9 +1,10 @@
 # a test version of the app.yaml used for development. This is not intended to be checked in
 application: galleryhangout
 
-version: 1
-runtime: python
+version: 2
+runtime: python27
 api_version: 1
+threadsafe: true
 
 # Set cache duration to 0 for development
 default_expiration: "0m"
@@ -14,4 +15,4 @@ handlers:
   upload: static/(.*)
 
 - url: .*
-  script: main.py
+  script: main.app

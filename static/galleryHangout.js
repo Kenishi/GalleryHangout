@@ -1,5 +1,4 @@
 /*
-* Copyright (c) 2011 Google Inc.
 *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may not
 * use this file except in compliance with the License. You may obtain a copy of
@@ -120,7 +119,8 @@ function UploadDialog(i) {
 
 		// Delete from upload button
 		var remove_node = document.createElement("IMG");
-		remove_node.setAttribute("src", "/static/remove.jpg");
+		var remove_url = serverPath + 'static/remove.jpg'; 
+		remove_node.setAttribute("src", remove_url);
 		remove_node.setAttribute("alt", "Remove file from upload list.");
 		remove_node.addEventListener("click", function(e) {
 			that.removeFile(row);
@@ -586,8 +586,6 @@ function init() {
       });
       
       gapi.hangout.onApiReady.remove(apiReady);
-      var width = document.getElementById("ui-layout-center").width;
-      alert(width);
     }
   };
 

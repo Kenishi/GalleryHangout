@@ -2,6 +2,35 @@
 ###Hangout Widget to share image among participants
 ===
 
+##Setup
+There are 3 steps to setting this project up to run on Google Hangout.
+
+1. Download the source
+2. Setup a Google Web AppEngine Project
+3. Setup a Application Project on ImgUr to get an App ID.
+4. Upload the program to your AppSpot and "Enter a Hangout."
+
+###1 Download the source
+This should be straight forward. Clone the tree to get the source.
+
+###2 Setup a Google App Engine Project
+The simplest way to do this is to follow the instructions in the "Web App Setup.txt" file. This is a file pulled from the "Starter App" that can be found on the Google Hangouts App Sample Apps section.
+
+__Note: Where it says to replace "YOUR APP ID", you need to replace "galleryhangout" instead.__
+
+In addition, if you are trying to find the "Hangouts" button on the list that is mentioned in the text file, you will have some trouble. Google recently changed their Developer's Console layout so its no longer in the same place. To get the Hangout's screen that the text mentions. You need to click "APIs" on the left menu in the Developer's Console and click the sprocket next to the "Hangouts" in the API list. This will take you to the screen where you can "Enter a hangout" and use the app.
+
+###3 Setup a ImgUr App
+You can register your application at [this site](https://api.imgur.com/oauth2/addclient) or by going to your ImgUr Account settings and clicking "Applications."
+
+Once you have an ID create a Javascript file in /static called "imgur_client.js" and add a line:
+`var imgur_clientId = "YOUR IMGUR APP ID";`
+
+###4 Upload everything
+You can now upload everything to Google (Follow the directions in the Web App Setup.txt to do this) and click the "Enter a Hangout" in the Hangouts Developer screen. Remember, this app is not public so you'll have to invite people for them to be able to use it and you won't be able to use it in a normal Hangout.
+
+====
+
 ##Project Motivation
 I have often used Google Hangouts with some of my friends and found I wanted to share some images with them; often times on my computer.
 This leaves you with two options:
@@ -41,7 +70,11 @@ Every project provides something new to learn. This is my first project that mak
 ##Credits
 I'm making use of one library at the moment:
 
-[Jquery ToastMessage Plugin](http://akquinet.github.io/jquery-toastmessage-plugin/) by [akquinet](http://github.com/akquinet)
+[JQuery ToastMessage Plugin](http://akquinet.github.io/jquery-toastmessage-plugin/) by [akquinet](http://github.com/akquinet)
+
+[JQuery UI](http://jqueryui.com/) for the upload dialog.
+
+[JQuery UI Layout](http://layout.jquery-dev.com/) for easy split panes.
 
 ---
 As always, Thanks for checking this out!

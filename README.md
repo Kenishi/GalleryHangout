@@ -1,5 +1,5 @@
 #Gallery Hangout
-###Hangout Widget to share image among participants
+###Hangout Widget to share images among participants
 ===
 
 ##Setup

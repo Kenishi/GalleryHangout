@@ -1,0 +1,8 @@
+Privacy Policy
+
+What data is collected?
+=======================
+
+The only data that gets saved is image data which is uploaded to the ImgUr website. As such, the user should review ImgUr's Privacy Policy as well (https://imgur.com/privacy). This image data is not transmitted to any server after posting on ImgUr. Realize that all image data uploaded using Gallery Hangout app can be viewed publicly by anyone should they have the URL to the image.
+
+In addition to ImgUr's privacy policy, the user should also review Google+'s privacy policy (https://www.google.com/policies/privacy/) to see what potential data may be collected by Google.

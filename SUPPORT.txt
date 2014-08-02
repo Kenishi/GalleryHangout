@@ -1,0 +1,6 @@
+Contact Support Information
+===========================
+
+Due to the free, open source nature of this project; support is not a guarantee.
+
+Users are more than welcome to submit bug reports and problems to the project's GitHub: https://github.com/Kenishi/GalleryHangout

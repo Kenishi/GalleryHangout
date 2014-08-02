@@ -1,0 +1,57 @@
+Terms of Service
+
+Thanks for using Gallery Hangout!
+
+Clarifying some terms
+=====================
+
+"the author" will refer to Jeremy May, the creator of this app.
+
+"the app" will refer to the Gallery Hangout extension.
+
+"Upload" or "Share" are synonymous terms which designate the action of selecting an image and uploading it through the app so others can see it in the app. 
+
+=====================
+
+By using Gallery Hangout in Google+ Hangout, you are agreeing to these terms and conditions below.
+In addition, you are also agreeing to the Terms of Service set forth by Google (https://www.google.com/policies/terms/) and Imgur (http://imgur.com/tos).
+
+To reiterate some of the things you agree not to do with this app:
+* Don't breach another's copyright by uploading their works.
+* Don't upload gore or other obscene material
+* Don't advertise
+* Don't solicit
+* Don't upload any material that can be considered "hate speech" 
+* Don't upload illegal pornographic material (i.e. Bestiality, Child Pornography, etc.)
+
+Because this app uses Imgur, Imgur reserves the right to decide whether uploaded content is illegal and will take the necessary legal action; in addition to banning you.
+
+=====================
+
+Liabilities
+
+By using this app, you absolve the author from any damages, losses, or incurred fees that may occur while using it. This is includes, but is not limited to, bandwidth fees incurred due to uploading or downloading images shared while using the app; legal or court fees incurred due to the uploading of illegal and/or copyrighted and/or trademarked material; your computer spontaneously imploding while sharing your favorite images. 
+
+=====================
+
+Bugs, Problems, and loss of service.
+
+Because this app is free and not made by a crack team of super human programmers (only 1 super human programmer), you can expect occasional problems. Because it is free, the author owes the user nothing, except maybe an apology. Fixes for problems or loss of service are not guaranteed by the author.
+
+By using this app, the user also agrees to realize that the author has no control over the state of services provided (for free) by Imgur as well. 
+
+=====================
+
+Copyrights
+
+The user agrees to the copyrights and licenses for all the software used within this app.
+
+Gallery Hangout is licensed under the terms of Apache License v2.0.
+JQuery, JQuery UI, and JQuery Layout are all licensed under the terms of the MIT License.
+Jquery ToastMessage is licensed under the terms of the Apache License v2.0.
+
+=====================
+
+Privacy Policy
+
+The privacy policy for this app can be found at: http://galleryhangout.appspot.com/PRIVACY.txt

@@ -102,6 +102,13 @@ function UploadDialog(i) {
 	
 	this.removeImage = serverPath + 'static/remove.jpg';
 	
+	function createRemoveButton() {
+		var span = document.createElement("SPAN");
+		span.setAttribute("class", "remove-btn");
+		span.innerHTML = "X";
+		return span;
+	}
+	
 	this.addFile = function(file) {
 		if(!that.dialog_obj.dialog("isOpen")) {
 			that.dialog_obj.dialog("open");
@@ -118,10 +125,11 @@ function UploadDialog(i) {
 		var filename_node = document.createTextNode(file.name);
 
 		// Delete from upload button
-		var remove_node = document.createElement("IMG");
+		//var remove_node = document.createElement("IMG");
+		var remove_node = createRemoveButton();
 		var remove_url = serverPath + 'static/remove.jpg'; 
-		remove_node.setAttribute("src", remove_url);
-		remove_node.setAttribute("alt", "Remove file from upload list.");
+		//remove_node.setAttribute("src", remove_url);
+		//remove_node.setAttribute("alt", "Remove file from upload list.");
 		remove_node.addEventListener("click", function(e) {
 			that.removeFile(row);
 			e.preventDefault();

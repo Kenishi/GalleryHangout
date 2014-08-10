@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Gallery Hangout</title>
+
+<meta charset="utf8">
+<meta name="Keywords" content="Google,Google+,Hangout,Gallery,upload,share,images,users">
+<meta name="Description" content="A free Google+ Hangout Extensions that lets you share images easily with other users in a hangout using Imgur.">
+
+<style>
+
+html, body {
+	color: black;		
+	font-size: 100%;
+	background: rgb(101,170,255);
+	font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+	font-style: normal;
+	font-weight: 200;
+	height: 100%;
+}
+
+h1 {
+	font-weight: 200;
+	font-size: 250%;
+	text-align: center;
+}
+
+h2 {
+	font-weight: 200;
+	font-size: 150%;
+	text-align: center;
+}
+
+#footer {
+	text-align: center;
+}
+
+#content {
+	vertical-align: top;
+
+	margin-bottom: 10px;
+	font-size: inital;
+}
+
+.show {
+	display: none;
+}
+
+.hide:target + .show {
+	display: block;
+}
+
+.hide:target {
+	display: none;
+}
+
+.hide:target ~ .answer {
+	display: block;
+}
+
+.entry { 
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.answer {
+	box-shadow: 1px 1px 2px #000;
+}
+
+.question {
+    display: inline-block;
+    height: auto;
+    width: 90%;
+    line-height: 20px;
+    padding: 5px 0px 5px 10px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    background: -moz-linear-gradient(left, white, rgb(101,170,255));
+	background: -webkit-linear-gradient(left, white, rgb(101,170,255));
+	background: -o-linear-gradient(left, white, rgb(101,170,255));
+	background: linear-gradient(to left, white, rgp(101,170,255));
+    border-radius: 15px;
+    font-size: 125%;
+    font-weight: 200;
+}
+
+.answer {
+	display: none;
+	height: auto;
+	width: 	90%;
+	margin-left: 25px;	
+	padding: 5px 0px 5px 10px;
+	border-radius: 15px;
+	background: white;
+	font-weight: 300;
+	/*float: left;*/
+}
+
+/* Show and Hide styling */
+.show, .hide {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    line-height: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 1px 0 #666;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 1px 1px 2px #000;
+    background: #cccbbb;
+    opacity: .95;
+    float: left;
+    margin-top: 4px;
+    margin-right: 5px;
+    margin-bottom: 25px;
+}
+
+.show:hover, .hide:hover {
+	background: #262626;
+}
+
+#content {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -4em;
+}
+
+#push, #footer {
+	height: 4em;
+}
+
+</style>
+</head>
+<body>
+	<div id="content">
+		<h1>Gallery Hangout</h1>
+
+		<h2>Share images in your hangout quick and easily!</h2>
+
+		<!-- #1 -->
+		<div class="entry">
+			<a href="#hide1" class="hide" id="hide1">+</a>
+			<a href="#show1" class="show" id="show1">-</a>
+
+		<div class="question">What is Gallery Hangout?</div>
+		<div class="answer">Gallery Hangout is a Google+ Hangout App that you can use that allows you to drag-and-drop images into the hangout and share them.<br/>
+			<br/>
+			These images will be uploaded to <a href="http://imgur.com">Imgur</a> and then shown in the gallery list for quick browsing.<br/>
+			<br/>
+			No more manual uploading and copying URLs or dealing with Google Drive permissions just to show your friends some photos you shot today.</div>
+		</div>
+
+		<!-- #2 -->
+		<div class="entry">
+			<a href="#hide2" class="hide" id="hide2">+</a>
+			<a href="#show2" class="show" id="show2">-</a>
+
+			<div class="question">What does it look like?</div>
+			<div class="answer">Check out <span id="screenshots"> some screenshots</span>.</div>
+		</div>
+
+		<!-- #3 -->
+		<div class="entry">
+			<a href="#hide3" class="hide" id="hide3">+</a>
+			<a href="#show3" class="show" id="show3">-</a>
+
+			<div class="question">Where can I get it?</div>
+			<div class="answer">You can find it on the Chrome Store by searching 'Gallery Hangout' or by clicking <span id="store-link">this link</span>.</div>
+		</div>
+
+		<!-- #4 -->
+		<div class="entry">
+			<a href="#hide4" class="hide" id="hide4">+</a>
+			<a href="#show4" class="show" id="show4">-</a>
+
+			<div class="question">Anything else I should know?</div>
+			<div class="answer">Gallery Hangout is an open source project licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a>.
+				 It's free and you can download the source code and do what you want with it. Check it out at <a href="http://github.com/Kenishi/GalleryHangout">GitHub</a>.<br/>
+				<br/>
+				In addition, the project is still in development and lacks a certain degree of polish. There may still be a number of bugs.
+			</div>
+		</div>
+		<div id="push"></div>
+	</div>
+
+	<div id="footer"> 
+		<a href="http://galleryhangout.appspot.com/static/pages/about.htm">About</a> ・ 
+		<a href="http://galleryhangout.appspot.com/static/pages/tos.htm">ToS</a> ・ 
+		<a href="http://galleryhangout.appspot.com/static/pages/privacy.htm">Privacy</a> ・ 
+		<a href="http://galleryhangout.appspot.com/static/pages/support.htm">Support</a>
+	</div>
+</body>
+</html>
